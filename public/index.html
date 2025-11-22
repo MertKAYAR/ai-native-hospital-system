@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HMS - Hastane Randevu Sistemi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navbar -->
+    <nav class="bg-blue-600 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-hospital-alt text-2xl"></i>
+                <span class="text-xl font-bold tracking-wide">AI-Native Hospital</span>
+            </div>
+            <div class="text-sm opacity-80">YZM301 Sınav Projesi</div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-6 py-8">
+        <div class="grid md:grid-cols-2 gap-8">
+            
+            <!-- Sol: Randevu Formu -->
+            <div class="bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                    <i class="fas fa-calendar-check text-blue-600"></i> Randevu Al
+                </h2>
+                
+                <form id="appointmentForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Doktor Seçin</label>
+                        <select id="doctorSelect" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none">
+                            <!-- JavaScript ile doldurulacak -->
+                            <option value="1">Dr. House (Tanı Uzmanı)</option>
+                            <option value="2">Dr. Strange (Cerrah)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Hasta Adı</label>
+                        <input type="text" id="patientName" placeholder="Adınız Soyadınız" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">TC Kimlik No</label>
+                        <input type="text" id="identityNumber" placeholder="11122233344" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Tarih</label>
+                        <input type="datetime-local" id="appointmentDate" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition duration-300 transform hover:scale-[1.02]">
+                        Randevuyu Onayla
+                    </button>
+                </form>
+
+                <!-- Bildirim Alanı -->
+                <div id="notification" class="hidden mt-4 p-4 rounded-lg text-center font-medium"></div>
+            </div>
+
+            <!-- Sağ: Bilgi / Banner -->
+            <div class="space-y-6">
+                <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                    <h3 class="text-lg font-bold text-blue-800 mb-2">
+                        <i class="fas fa-robot mr-2"></i>AI Destekli Müsaitlik Kontrolü
+                    </h3>
+                    <p class="text-blue-700 text-sm">
+                        Sistemimiz, seçtiğiniz doktorun takvimini yapay zeka destekli algoritmalarla saniyeler içinde tarar ve çakışmaları önler.
+                    </p>
+                </div>
+
+                <div class="bg-green-50 p-6 rounded-xl border border-green-100">
+                    <h3 class="text-lg font-bold text-green-800 mb-2">
+                        <i class="fas fa-user-md mr-2"></i>Aktif Doktorlar
+                    </h3>
+                    <ul class="space-y-2 text-green-700 text-sm">
+                        <li class="flex items-center gap-2"><div class="w-2 h-2 bg-green-500 rounded-full"></div> Dr. House (Müsait)</li>
+                        <li class="flex items-center gap-2"><div class="w-2 h-2 bg-green-500 rounded-full"></div> Dr. Strange (Müsait)</li>
+                        <li class="flex items-center gap-2"><div class="w-2 h-2 bg-red-500 rounded-full"></div> Dr. Who (Ameliyatta)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Basit Frontend Logic
+        document.getElementById('appointmentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = 'İşleniyor...';
+            btn.disabled = true;
+
+            const doctorId = document.getElementById('doctorSelect').value;
+            const name = document.getElementById('patientName').value;
+            const identity = document.getElementById('identityNumber').value;
+            const date = document.getElementById('appointmentDate').value;
+
+            // Rastgele hasta oluşturma simülasyonu (Backend'e göndermek için)
+            // Gerçek hayatta önce hasta login olurdu ama demo için hızlı geçiyoruz
+            
+            try {
+                const response = await fetch('/appointments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        doctor_id: doctorId,
+                        patient_id: 1, // Demo için sabit ID kullanıyoruz (Seed verisinden)
+                        start_time: date || '2025-12-25T14:00:00' 
+                    })
+                });
+
+                const data = await response.json();
+                const notify = document.getElementById('notification');
+                
+                notify.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
+
+                if (response.ok) {
+                    notify.classList.add('bg-green-100', 'text-green-700');
+                    notify.innerHTML = `<i class="fas fa-check-circle mr-2"></i> ${data.message}`;
+                } else {
+                    notify.classList.add('bg-red-100', 'text-red-700');
+                    notify.innerHTML = `<i class="fas fa-exclamation-circle mr-2"></i> ${data.error || 'Hata oluştu'}`;
+                }
+                
+                notify.classList.remove('hidden');
+
+            } catch (err) {
+                console.error(err);
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
