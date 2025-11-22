@@ -144,7 +144,7 @@ Projenin çalışır haldeki teknik demosu ve kod incelemesi için:
 
 **Mert Kayar** *Software Engineer & AI Orchestrator*
 
-[LinkedIn Profilim](www.linkedin.com/in/mert-kayar-537363356)
+[LinkedIn Profilim](https://www.linkedin.com/in/mert-kayar-537363356)
 
 -----
 
