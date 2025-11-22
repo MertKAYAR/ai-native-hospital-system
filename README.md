@@ -136,7 +136,7 @@ LLM'lerin (Yapay Zeka Modellerinin) projeyi anlaması için kök dizinde özel d
 
 Projenin çalışır haldeki teknik demosu ve kod incelemesi için:
 
-[▶️ YouTube Demo Videosunu İzle](https://www.google.com/search?q=https://youtu.be/rlNJCsXR4oA)
+[▶️ YouTube Demo Videosunu İzle](https://youtu.be/rlNJCsXR4oA)
 
 -----
 
@@ -144,7 +144,7 @@ Projenin çalışır haldeki teknik demosu ve kod incelemesi için:
 
 **Mert Kayar** *Software Engineer & AI Orchestrator*
 
-[LinkedIn Profilim](https://www.google.com/search?q=www.linkedin.com/in/mert-kayar-537363356)
+[LinkedIn Profilim](www.linkedin.com/in/mert-kayar-537363356)
 
 -----
 
