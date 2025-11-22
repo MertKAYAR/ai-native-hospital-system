@@ -136,7 +136,7 @@ LLM'lerin (Yapay Zeka Modellerinin) projeyi anlaması için kök dizinde özel d
 
 Projenin çalışır haldeki teknik demosu ve kod incelemesi için:
 
-[▶️ YouTube Demo Videosunu İzle](https://www.google.com/search?q=[BURAYA_YOUTUBE_L%C4%B0NK%C4%B0N%C4%B0_YAPI%C5%9ETIR](https://youtu.be/rlNJCsXR4oA))
+[▶️ YouTube Demo Videosunu İzle](https://www.google.com/search?q=https://youtu.be/rlNJCsXR4oA)
 
 -----
 
@@ -148,7 +148,3 @@ Projenin çalışır haldeki teknik demosu ve kod incelemesi için:
 
 -----
 
-*Bu proje, Samsun Üniversitesi Mühendislik Fakültesi 2025-2026 Güz Dönemi Ara Sınavı için hazırlanmıştır.*
-
-```
-```
